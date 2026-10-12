@@ -1,0 +1,75 @@
+Index.html
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Calculator</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Smart Calculator</h1>
+
+    <input type="number" id="a" placeholder="First number">
+    <input type="number" id="b" placeholder="Second number">
+
+    <br>
+
+    <button onclick="calculate('+')">Addition</button>
+    <button onclick="calculate('-')">Subtraction</button>
+    <button onclick="calculate('*')">Multiplication</button>
+    <button onclick="calculate('/')">Division</button>
+
+    <h2 id="result">Result:</h2>
+
+    <script>
+        function calculate(operator) {
+            const a = document.getElementById("a").value;
+            const b = document.getElementById("b").value;
+            const result = document.getElementById("result");
+
+            if (a.trim() === "" || b.trim() === "") {
+                result.textContent = "Enter both numbers";
+                return;
+            }
+
+            const x = Number(a);
+            const y = Number(b);
+            let answer;
+
+            switch (operator) {
+                case "+":
+                    answer = x + y;
+                    break;
+                case "-":
+                    answer = x - y;
+                    break;
+                case "*":
+                    answer = x * y;
+                    break;
+                case "/":
+                    if (y === 0) {
+                        result.textContent =
+                            "Cannot divide by zero";
+                        return;
+                    }
+                    answer = x / y;
+                    break;
+            }
+
+            result.textContent = "Result: " + answer;
+        }
+    </script>
+</body>
+</html>
